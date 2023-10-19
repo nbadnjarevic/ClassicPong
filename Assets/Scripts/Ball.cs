@@ -11,14 +11,32 @@ public class Ball : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ySpeed = Random.Range(-4f, 4f);
-        _rb.velocity = new Vector2(xSpeed, ySpeed);
-        constSpeed = Mathf.Sqrt(xSpeed * xSpeed - ySpeed * ySpeed);
+        RestartBall();
     }
 
     // Update is called once per frame
     void Update()
     { 
         _rb.velocity = _rb.velocity.normalized * constSpeed;
+    }
+
+    void RestartBall()
+    {
+        ySpeed = Random.Range(-4f, 4f);
+        _rb.velocity = new Vector2(xSpeed, ySpeed);
+        constSpeed = Mathf.Sqrt(xSpeed * xSpeed - ySpeed * ySpeed);
+        transform.position = new Vector2(0, 0);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.name == "Goal Left")
+        {
+            Debug.Log("test");
+            RestartBall();
+        } else if(collision.gameObject.name == "Goal Right")
+        {
+            RestartBall();
+        }
     }
 }

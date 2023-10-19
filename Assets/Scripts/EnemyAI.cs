@@ -17,18 +17,19 @@ public class EnemyAI : MonoBehaviour
     {
         float myY = transform.position.y;
         float ballY = ballTransform.position.y;
-        if (myY < ballY)
+        float diff = Mathf.Abs(myY - ballY);
+        if (diff < 0.3)
+        {
+            _rb.velocity = Vector2.zero;
+        }
+        else if (myY < ballY)
         {
             _rb.velocity = new Vector2(0, ySpeed);
         }
         else if (myY > ballY)
         {
             _rb.velocity = new Vector2(0, -ySpeed);
-        }
-        else
-        {
-            _rb.velocity = Vector2.zero;
-        }    
+        }  
     }
 
     // Update is called once per frame
