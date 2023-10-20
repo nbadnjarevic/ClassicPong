@@ -8,6 +8,7 @@ public class Ball : MonoBehaviour
     [SerializeField] float xSpeed = -5;
     private float ySpeed;
     private float constSpeed;
+    [SerializeField] ScoreManager scoreManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,10 +33,11 @@ public class Ball : MonoBehaviour
     {
         if(collision.gameObject.name == "Goal Left")
         {
-            Debug.Log("test");
+            scoreManager.playerTwoGoal();
             RestartBall();
         } else if(collision.gameObject.name == "Goal Right")
         {
+            scoreManager.playerOneGoal();
             RestartBall();
         }
     }
