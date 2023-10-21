@@ -6,6 +6,8 @@ public class Ball : MonoBehaviour
 {
     [SerializeField] Rigidbody2D _rb;
     [SerializeField] float xSpeed = -5;
+    [SerializeField] AudioSource goalSound;
+    [SerializeField] AudioSource collisionSound;
     private float ySpeed;
     private float constSpeed;
     [SerializeField] ScoreManager scoreManager;
@@ -34,11 +36,16 @@ public class Ball : MonoBehaviour
         if(collision.gameObject.name == "Goal Left")
         {
             scoreManager.playerTwoGoal();
+            goalSound.Play();
             RestartBall();
         } else if(collision.gameObject.name == "Goal Right")
         {
             scoreManager.playerOneGoal();
+            goalSound.Play();
             RestartBall();
+        } else
+        {
+            collisionSound.Play();
         }
     }
 }
