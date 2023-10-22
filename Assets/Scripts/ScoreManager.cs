@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -15,11 +16,19 @@ public class ScoreManager : MonoBehaviour
     {
         playerOneScore++;
         playerOneScoreText.text = playerOneScore.ToString();
+        if(playerOneScore == 10)
+        {
+            SceneManager.LoadScene("GameOverScene");
+        }
     }
 
     public void playerTwoGoal()
     {
         playerTwoScore++;
         playerTwoScoreText.text = playerTwoScore.ToString();
+        if (playerTwoScore == 10)
+        {
+            SceneManager.LoadScene("GameOverScene");
+        }
     }
 }
